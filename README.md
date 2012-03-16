@@ -38,6 +38,8 @@ passing this element as a `within` argument will filter out all items that are n
 
 You can also pass `window` as a within, which will return only items visible in a current browser window.
 
+***
+
 ### returns
 
 Volley returns jQuery wrapped array with rows, each containing DOM elements of passed items based on their visual position and passed starting point.
@@ -59,8 +61,6 @@ var rows = $items.volley() = [
 
 In an example above, array returned into `rows` variable is a jQuery object of arrays, not items, so you can't use any element manipulation jQuery methods like `rows.css`, `rows.hide`, etc.,
 but you can use `rows.each`, `rows.map`, ...
-
-***
 
 However, if only `within` has been passed, volley returns regular jQuery object with filtered items based on their visibility within `within` element.
 
