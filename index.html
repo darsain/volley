@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Volley - jQuery plugin</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<div id="header" class="container header">
+
+	<div id="download">
+		<h6>Download Latest</h6>
+		<div class="btn-group">
+			<a href="//github.com/Darsain/volley/raw/master/jquery.volley.js" class="btn btn-large">Development</a>
+			<a href="//github.com/Darsain/volley/raw/master/jquery.volley.min.js" class="btn btn-large">Minified</a>
+		</div>
+	</div>
+
+	<h1>Volley</h1>
+	<p>jQuery plugin for dividing elements into rows/columns based on their visual position</p>
+
+</div>
+
+<div id="nav">
+	<div class="container">
+
+		<ul id="tabs" class="clearfix">
+			<li data-activate="example"><a href="#">Example</a></li>
+			<li data-activate="code"><a href="#">Code</a></li>
+		</ul>
+
+	</div>
+</div>
+
+<div id="sections" class="container">
+
+	<div id="example" class="vwrap clearfix">
+
+		<div class="controlbar clearfix">
+
+			<button class="btn btn-black" data-direction="top">&darr;</button>
+			<button class="btn btn-black" data-direction="bottom">&uarr;</button>
+			<button class="btn btn-black" data-direction="left">&rarr;</button>
+			<button class="btn btn-black" data-direction="right">&larr;</button>
+			<button class="btn btn-black" data-direction="left-top">&#8600;</button>
+			<button class="btn btn-black" data-direction="right-bottom">&#8598;</button>
+			<button class="btn btn-black" data-direction="right-top">&#8601;</button>
+			<button class="btn btn-black" data-direction="left-bottom">&#8599;</button>
+
+			<div class="fright">
+				Add Within:
+				<button class="btn btn-black" data-action="addWithin" data-args='{ "width": 400, "height": 250 }'>400&times;250</button>
+				<button class="btn btn-black" data-action="addWithin" data-args='{ "width": 200, "height": 150 }'>200&times;150</button>
+				<button class="btn btn-red" data-action="removeWithin">Remove Within</button>
+			</div>
+
+		</div>
+
+		<hr>
+
+		<ul class="volley clearfix" data-items="240"></ul>
+
+		<hr>
+
+		<div class="info-bubble">
+			<p>Volley divides items into arrays representing rows in requested direction based on a passed starting point.</p>
+			<p>Volley can also filter items only visible within certain container, which can be any element in page, including window.
+			To illustrate this, try adding a within element and than running any animations.</p>
+		</div>
+
+	</div>
+
+
+	<div id="code" class="wrap clearfix">
+
+			<h2>Basic volley usage</h2>
+
+<pre class="prettyprint lang-js">
+// Volley call using default values (starting point: `top`, and no filter)
+$('ul.volley > li').volley().each( function( index, rowOfItems ){
+
+	// Set background color to one row after another with 50ms delay between them
+	setTimeout( function(){
+
+		$(rowOfItems).css({ backgroundColor: '#fff' });
+
+	}, index * 50 );
+
+});
+</pre>
+
+			<hr>
+
+			<h2>Customized row direction</h2>
+
+<pre class="prettyprint lang-js">
+// In this case volley will return array with columns of items from left to right
+$('ul.volley > li').volley('left');
+
+// This example returns diagonal rows starting at the left top corner
+$('ul.volley > li').volley('left-top');
+</pre>
+
+			<hr>
+
+			<h2>Filtering items based on their visibility within another element</h2>
+
+<pre class="prettyprint lang-js">
+// Returns columns from left to right, but only containing items that are currently visible in browser window
+$('ul.volley > li').volley('left', window);
+
+// If ul.volley is placed in #container, and container is set to strict size with overflow: hidden;
+// volley will return only items visible within the #container, and ignore items that are outside of its borders
+$('ul.volley > li').volley( 'left', $('#container')[0] );
+
+// You can pass whole jQuery object, or a selector
+$('ul.volley > li').volley( 'left', $('#container') );
+$('ul.volley > li').volley( 'left', '#container' );
+
+// You can also ignore division of items into rows, and use only visible filter
+// In this case volley just filters items visible within the #container, and returns regular jQuery object
+// on which you can use all element manipulation methods of jQuery
+$('ul.volley > li').volley('#container').css({ backgroundColor: '#bada55' });
+</pre>
+
+	</div>
+
+</div>
+
+<div id="footer">
+	<div class="container">
+		<span class="fright"><a href="#top">Back to top &uarr;</a></span>
+		<p>Licensed under the <a href="http://www.opensource.org/licenses/MIT">MIT license</a>.</p>
+	</div>
+</div>
+
+<a href="http://github.com/Darsain/volley"><img style="position:absolute;top:0;left:0;border:0;" src="https://a248.e.akamai.net/assets.github.com/img/bec6c51521dcc8148146135149fe06a9cc737577/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+
+<script type="text/javascript">window.log=function(){log.history=log.history||[];log.history.push(arguments);if(this.console){console.log(Array.prototype.slice.call(arguments))}};</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+<script type="text/javascript" src="js/libs/prettify.js"></script>
+<script type="text/javascript" src="jquery.volley.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+</html>
